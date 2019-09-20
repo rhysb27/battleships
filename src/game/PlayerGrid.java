@@ -43,6 +43,7 @@ public class PlayerGrid extends Grid {
 
         if (hit) {
             this.grid[space.getX()][space.getY()] = Hit;
+            registerHit();
         } else {
             this.grid[space.getX()][space.getY()] = Miss;
         }

@@ -9,7 +9,7 @@ public class Game {
     private PlayerGrid playerGrid;
     private Grid opponentGrid;
     private boolean playersTurn;
-    private int turns;
+    private float turns;
     private Winner winner;
 
     public enum Ship {
@@ -41,7 +41,7 @@ public class Game {
         this.playerGrid = new PlayerGrid();
         this.opponentGrid = new Grid();
         this.playersTurn = true;
-        this.turns = 0;
+        this.turns = 0F;
         this.winner = No_Winner;
 
     }
@@ -130,7 +130,8 @@ public class Game {
             return true;
         }
 
-        playersTurn = !playersTurn;
+        this.playersTurn = !playersTurn;
+        this.turns += 0.5F;
 
         return false;
     }
@@ -170,14 +171,12 @@ public class Game {
     @Override
     public String toString() {
 
-        String boardString = String.format(
-                  "\n--- TURN %d ---"
-                + "%s"
-                + "\n ==================================================== "
-                + "%s\n" ,
-                turns, opponentGrid.toString(), playerGrid.toString()
+        return String.format(
+                  "                     --- Round %d ---                     "
+                + "\n%s"
+                + "\n ======================================================== "
+                + "\n%s" ,
+                (int) Math.floor(turns), opponentGrid.toString(), playerGrid.toString()
         );
-
-        return boardString;
     }
 }

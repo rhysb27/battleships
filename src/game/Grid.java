@@ -12,6 +12,9 @@ public class Grid {
     public static final int BOARD_HEIGHT = 10;
     private int hitsRemaining;
 
+    /**
+     *
+     */
     Grid() {
 
         this.grid = new GridSquareState[BOARD_WIDTH][BOARD_HEIGHT];
@@ -32,10 +35,14 @@ public class Grid {
     void registerStrike(GridSquare space, boolean hit) {
         if (hit) {
             grid[space.getX()][space.getY()] = Hit;
-            this.hitsRemaining--;
+            registerHit();
         } else {
             grid[space.getX()][space.getY()] = Miss;
         }
+    }
+
+    protected void registerHit(){
+        this.hitsRemaining--;
     }
 
 
@@ -43,10 +50,11 @@ public class Grid {
         return hitsRemaining == 0;
     }
 
+    @Override
     public String toString() {
 
-        String displayString = String.format(
-                          "\n      -A-  -B-  -C-  -D-  -E-  -F-  -G-  -H-  -I-  -J-     "
+        return String.format(
+                          "      -A-  -B-  -C-  -D-  -E-  -F-  -G-  -H-  -I-  -J-     "
                         + "\n -1- [%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ] -1-"
                         + "\n -2- [%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ] -2-"
                         + "\n -3- [%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ][%s ] -3-"
@@ -77,9 +85,8 @@ public class Grid {
                 grid[0][8].v(), grid[1][8].v(), grid[2][8].v(), grid[3][8].v(), grid[4][8].v(),
                 grid[5][8].v(), grid[6][8].v(), grid[7][8].v(), grid[8][8].v(), grid[9][8].v(),
                 grid[0][9].v(), grid[1][9].v(), grid[2][9].v(), grid[3][9].v(), grid[4][9].v(),
-                grid[5][9].v(), grid[6][9].v(), grid[7][9].v(), grid[8][9].v(), grid[9][9].v());
-
-        return displayString;
+                grid[5][9].v(), grid[6][9].v(), grid[7][9].v(), grid[8][9].v(), grid[9][9].v()
+        );
     }
 
 }
